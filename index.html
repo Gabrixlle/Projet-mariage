@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beau Mariage — Avant-projet CRM</title>
+  <meta name="description" content="Avant-projet : sélection d'un progiciel CRM pour Beau Mariage, entreprise de vente d'accessoires de mariage.">
+
+  <!-- Polices -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.className="js";</script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Pétales animés -->
+  <div id="petals" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Beau <span>Mariage</span></a>
+    <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="nav__links">
+      <li><a href="index.html" class="is-active">Accueil</a></li>
+      <li><a href="#projet">Le projet</a></li>
+      <li><a href="note-de-cadrage.html">Note de cadrage</a></li>
+      <li><a href="#" class="soon">Faisabilité</a></li>
+      <li><a href="#" class="soon">Budget</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <!-- Couronne florale décorative -->
+    <svg class="hero__ornament reveal-up" style="animation-delay:.05s" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M100 12c-18 18-40 22-58 18 8 22 30 40 58 50 28-10 50-28 58-50-18 4-40 0-58-18Z" stroke="currentColor" stroke-width="1.5" fill="none" opacity=".5"/>
+      <circle cx="100" cy="36" r="9" fill="currentColor" opacity=".35"/>
+      <circle cx="74" cy="52" r="6" fill="#C2A04C" opacity=".6"/>
+      <circle cx="126" cy="52" r="6" fill="#C2A04C" opacity=".6"/>
+      <circle cx="86" cy="72" r="5" fill="#E3B5AD" opacity=".8"/>
+      <circle cx="114" cy="72" r="5" fill="#E3B5AD" opacity=".8"/>
+    </svg>
+
+    <p class="hero__eyebrow reveal-up" style="animation-delay:.15s">Avant-projet · Progiciel CRM</p>
+    <h1 class="hero__title reveal-up" style="animation-delay:.25s">Beau <em>Mariage</em></h1>
+    <p class="hero__sub reveal-up" style="animation-delay:.4s">Gérer chaque union, du premier client à la dernière livraison</p>
+    <div class="hero__line reveal-up" style="animation-delay:.5s"></div>
+    <p class="hero__desc reveal-up" style="animation-delay:.6s">
+      Ce dossier numérique réunit l'ensemble des livrables de notre avant-projet : sélectionner et préparer
+      l'intégration d'un CRM pour structurer la relation client, fournisseur et commande de l'entreprise.
+    </p>
+    <a href="note-de-cadrage.html" class="hero__cta reveal-up" style="animation-delay:.72s">Lire la note de cadrage →</a>
+  </header>
+
+  <!-- LE PROJET -->
+  <section class="section" id="projet">
+    <p class="section__label fade">Présentation générale</p>
+    <h2 class="section__title fade">L'entreprise <em>&amp;</em> son besoin</h2>
+    <p class="section__intro fade">
+      Fondée en 2001, Beau Mariage est spécialisée dans la vente d'accessoires de mariage,
+      exclusivement en ligne. Dans le cadre de sa digitalisation, elle souhaite se doter d'un outil
+      unique pour piloter ses relations et ses ventes.
+    </p>
+
+    <div class="about">
+      <div class="about__card fade">
+        <h3>Le contexte</h3>
+        <p>
+          L'activité de Beau Mariage repose entièrement sur son site internet. Pour améliorer sa gestion
+          interne et externe, l'entreprise veut un progiciel de <strong>CRM</strong> (open source ou payant)
+          capable de centraliser trois aspects clés : le client, le fournisseur et la commande.
+        </p>
+        <p>
+          L'outil devra également couvrir la facturation, les campagnes marketing et fournir un volet décisionnel.
+        </p>
+        <div class="about__pills">
+          <span>Clients</span><span>Fournisseurs</span><span>Commandes</span>
+          <span>Facturation</span><span>Marketing</span><span>Décisionnel</span>
+        </div>
+      </div>
+
+      <div class="about__figure fade" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 78C30 64 18 52 18 38a14 14 0 0 1 26-7 14 14 0 0 1 26 7c0 14-12 26-32 40Z" stroke="currentColor" stroke-width="2.5" fill="none"/>
+          <circle cx="50" cy="24" r="3" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVRABLES -->
+  <section class="section section--tint" id="livrables">
+    <p class="section__label fade">Les livrables de l'avant-projet</p>
+    <h2 class="section__title fade">Notre <em>feuille</em> de route</h2>
+    <p class="section__intro fade">
+      Quatre livrables structurent notre travail en équipe. Le premier est disponible dès maintenant,
+      les suivants viendront enrichir ce dossier au fil du projet.
+    </p>
+
+    <div class="deliverables">
+      <article class="card card--ready fade">
+        <div class="card__num">I</div>
+        <h3>Note de cadrage</h3>
+        <p>Contexte, objectifs, périmètre, parties prenantes et premiers jalons du projet.</p>
+        <span class="card__badge card__badge--ready">Disponible</span>
+        <a href="note-de-cadrage.html" class="card__link" aria-label="Ouvrir la note de cadrage"></a>
+      </article>
+
+      <article class="card fade">
+        <div class="card__num">II</div>
+        <h3>Étude de faisabilité</h3>
+        <p>Analyse technique, fonctionnelle et organisationnelle des solutions CRM envisagées.</p>
+        <span class="card__badge card__badge--soon">Bientôt</span>
+      </article>
+
+      <article class="card fade">
+        <div class="card__num">III</div>
+        <h3>Étude d'opportunité</h3>
+        <p>Comparatif des bénéfices attendus et justification du choix de la solution.</p>
+        <span class="card__badge card__badge--soon">Bientôt</span>
+      </article>
+
+      <article class="card fade">
+        <div class="card__num">IV</div>
+        <h3>Budget &amp; planning</h3>
+        <p>Premier chiffrage et calendrier prévisionnel de l'intégration du CRM.</p>
+        <span class="card__badge card__badge--soon">Bientôt</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__logo">Beau Mariage</div>
+    <div class="footer__divider"></div>
+    <p>Avant-projet · Sélection d'un progiciel CRM · Travail en équipe projet</p>
+    <p>© 2026 — Projet pédagogique</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Note de cadrage — Beau Mariage</title>
+  <meta name="description" content="Note de cadrage de l'avant-projet CRM de Beau Mariage.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.className="js";</script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="petals" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Beau <span>Mariage</span></a>
+    <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="nav__links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="index.html#projet">Le projet</a></li>
+      <li><a href="note-de-cadrage.html" class="is-active">Note de cadrage</a></li>
+      <li><a href="#" class="soon">Faisabilité</a></li>
+      <li><a href="#" class="soon">Budget</a></li>
+    </ul>
+  </nav>
+
+  <!-- En-tête de page -->
+  <header class="page-hero">
+    <p class="page-hero__eyebrow reveal-up">Livrable I · Avant-projet</p>
+    <h1 class="page-hero__title reveal-up" style="animation-delay:.15s">Note de <em>cadrage</em></h1>
+    <div class="page-hero__meta reveal-up" style="animation-delay:.3s">
+      <span><strong>Projet :</strong> Sélection d'un CRM</span>
+      <span><strong>Commanditaire :</strong> Beau Mariage</span>
+      <span><strong>Version :</strong> 1.0</span>
+      <span><strong>Statut :</strong> En cours</span>
+    </div>
+  </header>
+
+  <main class="doc">
+
+    <!-- 1. Contexte -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">I</span><h2 class="block__title">Contexte du projet</h2></div>
+      <p>
+        Créée en <strong>2001</strong>, la société Beau Mariage est spécialisée dans la vente d'accessoires
+        de mariage. La totalité de ses ventes est réalisée directement sur son site internet.
+      </p>
+      <p>
+        Dans le cadre de sa <strong>digitalisation</strong> et de sa volonté d'améliorer la gestion interne
+        comme externe, l'entreprise souhaite se doter d'un progiciel de CRM (open source ou payant) afin de
+        centraliser et de fiabiliser le pilotage de son activité commerciale.
+      </p>
+    </section>
+
+    <!-- 2. Objectifs -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">II</span><h2 class="block__title">Objectifs</h2></div>
+      <p><strong>Objectif général :</strong> sélectionner, puis préparer l'intégration d'un CRM unique répondant aux besoins métier de Beau Mariage.</p>
+      <p><strong>Objectifs opérationnels — l'outil devra permettre de :</strong></p>
+      <ul>
+        <li>Gérer la relation avec les clients et les fournisseurs</li>
+        <li>Gérer les produits et les commandes</li>
+        <li>Gérer la facturation</li>
+        <li>Concevoir et suivre des campagnes marketing</li>
+        <li>Disposer d'un outil décisionnel (tableaux de bord, indicateurs)</li>
+      </ul>
+      <p>
+        Le périmètre prioritaire de la première phase porte sur trois axes : <strong>client</strong>,
+        <strong>fournisseur</strong> et <strong>commande</strong>.
+      </p>
+    </section>
+
+    <!-- 3. Périmètre -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">III</span><h2 class="block__title">Périmètre</h2></div>
+      <div class="grid2">
+        <div class="subcard subcard--in">
+          <h4>Inclus</h4>
+          <ul>
+            <li>Gestion clients &amp; fournisseurs</li>
+            <li>Gestion produits &amp; commandes</li>
+            <li>Facturation</li>
+            <li>Campagnes marketing</li>
+            <li>Reporting décisionnel</li>
+          </ul>
+        </div>
+        <div class="subcard subcard--out">
+          <h4>Exclus (à ce stade)</h4>
+          <ul>
+            <li>Refonte du site e-commerce</li>
+            <li>Développement d'un outil sur-mesure</li>
+            <li>Gestion logistique / transporteurs</li>
+            <li>Comptabilité générale</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Parties prenantes -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">IV</span><h2 class="block__title">Parties prenantes</h2></div>
+      <p>L'organigramme de Beau Mariage situe les acteurs concernés par le projet :</p>
+      <div class="who">
+        <div class="lead"><strong>Directeur Général</strong><span>Sponsor du projet</span></div>
+        <div><strong>Secrétaire</strong><span>Support administratif</span></div>
+        <div><strong>Dir. Commercial</strong><span>+ 2 commerciaux</span></div>
+        <div><strong>Dir. Financier</strong><span>Validation budget</span></div>
+        <div><strong>Dir. Informatique</strong><span>Référent technique</span></div>
+      </div>
+    </section>
+
+    <!-- 5. Livrables -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">V</span><h2 class="block__title">Livrables attendus</h2></div>
+      <ul>
+        <li><strong>Note de cadrage</strong> — enjeux et périmètre du projet (présent document)</li>
+        <li><strong>Étude de faisabilité</strong> du projet</li>
+        <li><strong>Étude d'opportunité</strong></li>
+        <li><strong>Premier aspect budgétaire et planning</strong></li>
+      </ul>
+      <p>L'ensemble de ces livrables est produit en <strong>équipe projet</strong>.</p>
+    </section>
+
+    <!-- 6. Contraintes -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">VI</span><h2 class="block__title">Contraintes</h2></div>
+      <ul>
+        <li><strong>Solution :</strong> CRM open source ou payant — le choix devra être justifié</li>
+        <li><strong>Budget :</strong> à cadrer, validé par la Direction Financière</li>
+        <li><strong>Délai :</strong> respecter le calendrier pédagogique de l'avant-projet</li>
+        <li><strong>Technique :</strong> compatibilité avec l'écosystème e-commerce existant</li>
+      </ul>
+    </section>
+
+    <!-- 7. Risques -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">VII</span><h2 class="block__title">Risques identifiés</h2></div>
+      <table class="risk">
+        <thead>
+          <tr><th>Risque</th><th>Impact</th><th>Parade envisagée</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Mauvaise adéquation outil / besoin</td><td><span class="tag tag--h">Élevé</span></td><td>Grille de critères de sélection</td></tr>
+          <tr><td>Dépassement budgétaire</td><td><span class="tag tag--m">Moyen</span></td><td>Comparatif coûts (licences, hébergement)</td></tr>
+          <tr><td>Faible adoption par les équipes</td><td><span class="tag tag--m">Moyen</span></td><td>Implication des utilisateurs en amont</td></tr>
+          <tr><td>Migration des données clients</td><td><span class="tag tag--l">Faible</span></td><td>Cartographie des données existantes</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 8. Jalons -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">VIII</span><h2 class="block__title">Jalons prévisionnels</h2></div>
+      <div class="timeline">
+        <div class="timeline__item"><span>Étape 1</span><h4>Cadrage</h4><p>Note de cadrage &amp; définition du besoin.</p></div>
+        <div class="timeline__item"><span>Étape 2</span><h4>Faisabilité &amp; opportunité</h4><p>Analyse des solutions et comparatif.</p></div>
+        <div class="timeline__item"><span>Étape 3</span><h4>Budget &amp; planning</h4><p>Premier chiffrage et calendrier d'intégration.</p></div>
+        <div class="timeline__item"><span>Étape 4</span><h4>Recommandation</h4><p>Choix argumenté du CRM retenu.</p></div>
+      </div>
+    </section>
+
+    <!-- 9. Critères de succès -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">IX</span><h2 class="block__title">Critères de succès</h2></div>
+      <ul>
+        <li>Un CRM répondant aux besoins client, fournisseur et commande</li>
+        <li>Une solution adaptée au budget validé par la Direction</li>
+        <li>Un choix justifié par les études de faisabilité et d'opportunité</li>
+        <li>Des livrables produits dans les délais, en équipe</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__logo">Beau Mariage</div>
+    <div class="footer__divider"></div>
+    <p>Note de cadrage · Version 1.0 · Avant-projet CRM</p>
+    <p><a href="index.html" style="color:var(--gold-light);text-decoration:none;letter-spacing:.1em;">← Retour à l'accueil</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
