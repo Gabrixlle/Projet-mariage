@@ -25,6 +25,7 @@
       <li><a href="index.html">Accueil</a></li>
       <li><a href="index.html#projet">Le projet</a></li>
       <li><a href="note-de-cadrage.html" class="is-active">Note de cadrage</a></li>
+      <li><a href="#" class="soon">Benchmark</a></li>
       <li><a href="#" class="soon">Faisabilité</a></li>
       <li><a href="#" class="soon">Budget</a></li>
     </ul>
@@ -41,6 +42,17 @@
       <span><strong>Statut :</strong> En cours</span>
     </div>
   </header>
+
+  <!-- Séparateur alliances -->
+  <div class="divider-rings" aria-hidden="true">
+    <svg class="rings" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+      <circle class="ring" cx="50" cy="46" r="24"/>
+      <circle class="ring ring--2" cx="74" cy="46" r="24"/>
+      <path class="gem" d="M62 8l5 7-5 7-5-7z"/>
+      <path class="sparkle" d="M30 18l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z"/>
+      <path class="sparkle sparkle--b" d="M96 24l1.2 3 3 1.2-3 1.2-1.2 3-1.2-3-3-1.2 3-1.2z"/>
+    </svg>
+  </div>
 
   <main class="doc">
 
@@ -105,7 +117,8 @@
     <!-- 4. Parties prenantes -->
     <section class="block fade">
       <div class="block__head"><span class="block__no">IV</span><h2 class="block__title">Parties prenantes</h2></div>
-      <p>L'organigramme de Beau Mariage situe les acteurs concernés par le projet :</p>
+      <p>Le projet implique deux groupes d'acteurs : le commanditaire (Beau Mariage) et l'équipe projet en charge des livrables.</p>
+      <p><strong>Côté Beau Mariage (métier) :</strong></p>
       <div class="who">
         <div class="lead"><strong>Directeur Général</strong><span>Sponsor du projet</span></div>
         <div><strong>Secrétaire</strong><span>Support administratif</span></div>
@@ -113,6 +126,13 @@
         <div><strong>Dir. Financier</strong><span>Validation budget</span></div>
         <div><strong>Dir. Informatique</strong><span>Référent technique</span></div>
       </div>
+      <p style="margin-top:24px;"><strong>Équipe projet :</strong></p>
+      <div class="who">
+        <div class="lead"><strong>Chef de projet</strong><span>Pilotage &amp; coordination</span></div>
+        <div><strong>Business Analyst</strong><span>Analyse des besoins (AMOA)</span></div>
+        <div><strong>Référent technique</strong><span>Intégration &amp; données</span></div>
+      </div>
+      <p style="font-size:13.5px;margin-top:14px;">À personnaliser avec les noms et rôles réels des membres de votre équipe.</p>
     </section>
 
     <!-- 5. Livrables -->
@@ -131,7 +151,7 @@
     <section class="block fade">
       <div class="block__head"><span class="block__no">VI</span><h2 class="block__title">Contraintes</h2></div>
       <ul>
-        <li><strong>Solution :</strong> CRM open source ou payant — le choix devra être justifié</li>
+        <li><strong>Solution :</strong> CRM open source ou payant</li>
         <li><strong>Budget :</strong> à cadrer, validé par la Direction Financière</li>
         <li><strong>Délai :</strong> respecter le calendrier pédagogique de l'avant-projet</li>
         <li><strong>Technique :</strong> compatibilité avec l'écosystème e-commerce existant</li>
@@ -146,9 +166,12 @@
           <tr><th>Risque</th><th>Impact</th><th>Parade envisagée</th></tr>
         </thead>
         <tbody>
-          <tr><td>Mauvaise adéquation outil / besoin</td><td><span class="tag tag--h">Élevé</span></td><td>Grille de critères de sélection</td></tr>
-          <tr><td>Dépassement budgétaire</td><td><span class="tag tag--m">Moyen</span></td><td>Comparatif coûts (licences, hébergement)</td></tr>
-          <tr><td>Faible adoption par les équipes</td><td><span class="tag tag--m">Moyen</span></td><td>Implication des utilisateurs en amont</td></tr>
+        <tr><th>Risque</th><th>Criticité</th><th>Action de mitigation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Mauvaise adéquation outil / besoin</td><td><span class="tag tag--h">Élevée</span></td><td>Benchmark et grille de critères de sélection</td></tr>
+          <tr><td>Dépassement budgétaire</td><td><span class="tag tag--m">Moyenne</span></td><td>Comparatif coûts (licences, hébergement)</td></tr>
+          <tr><td>Faible adoption par les équipes</td><td><span class="tag tag--m">Moyenne</span></td><td>Implication des utilisateurs en amont</td></tr>
           <tr><td>Migration des données clients</td><td><span class="tag tag--l">Faible</span></td><td>Cartographie des données existantes</td></tr>
         </tbody>
       </table>
@@ -156,12 +179,17 @@
 
     <!-- 8. Jalons -->
     <section class="block fade">
-      <div class="block__head"><span class="block__no">VIII</span><h2 class="block__title">Jalons prévisionnels</h2></div>
+      <div class="block__head"><span class="block__no">VIII</span><h2 class="block__title">Macro-planning du projet</h2></div>
+      <p>Vue d'ensemble du projet, du cadrage jusqu'à la mise en production du CRM. Les phases 1 et 2 correspondent à notre périmètre d'avant-projet.</p>
       <div class="timeline">
-        <div class="timeline__item"><span>Étape 1</span><h4>Cadrage</h4><p>Note de cadrage &amp; définition du besoin.</p></div>
-        <div class="timeline__item"><span>Étape 2</span><h4>Faisabilité &amp; opportunité</h4><p>Analyse des solutions et comparatif.</p></div>
-        <div class="timeline__item"><span>Étape 3</span><h4>Budget &amp; planning</h4><p>Premier chiffrage et calendrier d'intégration.</p></div>
-        <div class="timeline__item"><span>Étape 4</span><h4>Recommandation</h4><p>Choix argumenté du CRM retenu.</p></div>
+        <div class="timeline__item"><span>Phase 1 · Avant-projet</span><h4>Cadrage &amp; expression du besoin</h4><p>Note de cadrage, objectifs et périmètre du projet.</p></div>
+        <div class="timeline__item"><span>Phase 2 · Avant-projet</span><h4>Benchmark &amp; études</h4><p>Benchmark des CRM, étude de faisabilité et d'opportunité, premier budget.</p></div>
+        <div class="timeline__item"><span>Phase 3</span><h4>Choix de la solution</h4><p>Décision et validation du CRM retenu par la Direction.</p></div>
+        <div class="timeline__item"><span>Phase 4</span><h4>Paramétrage &amp; intégration</h4><p>Configuration de l'outil et raccordement à l'écosystème e-commerce existant.</p></div>
+        <div class="timeline__item"><span>Phase 5</span><h4>Reprise des données &amp; recette</h4><p>Migration des données clients / fournisseurs puis phase de tests.</p></div>
+        <div class="timeline__item"><span>Phase 6</span><h4>Formation des utilisateurs</h4><p>Prise en main de l'outil par les équipes de Beau Mariage.</p></div>
+        <div class="timeline__item"><span>Phase 7 · Livraison</span><h4>Déploiement du CRM</h4><p>Mise en production et lancement officiel de l'outil.</p></div>
+        <div class="timeline__item"><span>Phase 8</span><h4>Suivi &amp; accompagnement</h4><p>Bilan, ajustements et support post-déploiement.</p></div>
       </div>
     </section>
 
