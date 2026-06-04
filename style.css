@@ -424,3 +424,31 @@ body {
   .risk { font-size: 13px; }
   .risk th, .risk td { padding: 10px 8px; }
 }
+/* ===== ILLUSTRATIONS MARIAGE (alliances + couple) ===== */
+.rings { width: 120px; height: auto; display: block; }
+.rings .ring { fill: none; stroke: var(--gold); stroke-width: 4; }
+.rings .ring--2 { stroke: var(--sage); }
+.rings .gem { fill: var(--gold-light); animation: gemPulse 2.4s ease-in-out infinite; transform-origin: center; }
+.rings .sparkle { fill: var(--gold); opacity: 0; animation: sparkle 3s ease-in-out infinite; transform-origin: center; }
+.rings .sparkle--b { animation-delay: 1.5s; }
+@keyframes gemPulse { 0%,100% { opacity: .7; } 50% { opacity: 1; } }
+@keyframes sparkle  { 0%,100% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(1); } }
+
+.divider-rings {
+  display: flex; align-items: center; justify-content: center; gap: 22px;
+  padding: 10px 20px; position: relative; z-index: 2;
+}
+.divider-rings::before, .divider-rings::after {
+  content: ''; height: 1px; width: min(22vw, 180px);
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.divider-rings::after { background: linear-gradient(90deg, var(--gold), transparent); }
+.divider-rings .rings { width: 92px; animation: floaty 4s ease-in-out infinite; }
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+.couple { width: 70%; }
+.couple path, .couple circle, .couple line {
+  stroke: var(--ivory); stroke-width: 2; fill: none;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.couple .fillw { fill: rgba(251,246,238,.16); stroke: none; }
