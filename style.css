@@ -356,6 +356,7 @@ body {
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 6px; }
 .subcard { background: rgba(244,236,223,.55); border-radius: 6px; padding: 20px 22px; }
 .subcard h4 { font-family: var(--font-display); font-size: 20px; color: var(--sage-dark); margin-bottom: 10px; }
+.subcard li { font-size: 13.5px; }
 .subcard--in  { border-top: 3px solid var(--sage); }
 .subcard--out { border-top: 3px solid var(--blush); }
 
