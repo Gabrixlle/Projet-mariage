@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Étude de faisabilité — Beau Mariage</title>
+  <meta name="description" content="Étude de faisabilité du projet CRM de Beau Mariage : dimensions technique, organisationnelle, financière et temporelle.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.className="js";</script>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ---- Verdict global ---- */
+    .verdict {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: linear-gradient(135deg, rgba(138,154,123,.18), rgba(94,110,80,.12));
+      border: 1.5px solid var(--sage);
+      border-radius: 6px;
+      padding: 24px 30px;
+      margin-top: 10px;
+    }
+    .verdict__icon { font-size: 36px; flex-shrink: 0; }
+    .verdict__text { font-size: 16px; color: var(--ink-soft); }
+    .verdict__text strong { color: var(--sage-dark); font-size: 18px; display: block; margin-bottom: 4px; }
+
+    /* ---- Jauge de faisabilité ---- */
+    .gauge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 18px; margin-top: 10px; }
+    .gauge {
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(194,160,76,.22);
+      border-radius: 6px;
+      padding: 18px 20px;
+      text-align: center;
+    }
+    .gauge__label { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 12px; }
+    .gauge__bar { height: 8px; background: var(--ivory-deep); border-radius: 50px; overflow: hidden; margin-bottom: 8px; }
+    .gauge__fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg, var(--sage), var(--gold)); }
+    .gauge__val { font-family: var(--font-display); font-size: 22px; color: var(--sage-dark); }
+    .gauge--warn .gauge__fill { background: linear-gradient(90deg, var(--blush), #c27a73); }
+    .gauge--warn .gauge__val { color: #8b3a34; }
+
+    /* ---- Tableau comparatif ---- */
+    .feas-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+    .feas-table th { background: var(--sage-dark); color: var(--ivory); padding: 12px 14px; text-align: left; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+    .feas-table td { padding: 12px 14px; border-bottom: 1px solid rgba(194,160,76,.2); color: var(--ink-soft); vertical-align: top; }
+    .feas-table tr:last-child td { border-bottom: 0; }
+    .feas-table tr:nth-child(even) td { background: rgba(244,236,223,.4); }
+    .ok  { color: #3a6b35; font-weight: 600; }
+    .nok { color: #8b3a34; font-weight: 600; }
+    .mid { color: #7a5c10; font-weight: 600; }
+
+    /* ---- Encadrés condition / recommandation ---- */
+    .cond {
+      background: rgba(227,181,173,.18);
+      border-left: 4px solid var(--blush);
+      border-radius: 0 6px 6px 0;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 14.5px;
+      color: var(--ink-soft);
+    }
+    .cond strong { color: var(--sage-dark); }
+    .reco {
+      background: rgba(138,154,123,.15);
+      border-left: 4px solid var(--sage);
+      border-radius: 0 6px 6px 0;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 14.5px;
+      color: var(--ink-soft);
+    }
+    .reco strong { color: var(--sage-dark); }
+
+    /* ---- ROI ---- */
+    .roi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 16px; margin-top: 10px; }
+    .roi-card {
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(194,160,76,.22);
+      border-radius: 6px;
+      padding: 20px;
+      text-align: center;
+    }
+    .roi-card__val { font-family: var(--font-display); font-size: 32px; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+    .roi-card__label { font-size: 13px; color: var(--ink-soft); }
+  </style>
+</head>
+<body>
+
+  <div id="petals" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Beau <span>Mariage</span></a>
+    <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="nav__links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="index.html#projet">Le projet</a></li>
+      <li><a href="note-de-cadrage.html">Note de cadrage</a></li>
+      <li><a href="#" class="soon">Benchmark</a></li>
+      <li><a href="etude-faisabilite.html" class="is-active">Faisabilité</a></li>
+      <li><a href="#" class="soon">Budget</a></li>
+    </ul>
+  </nav>
+
+  <!-- En-tête de page -->
+  <header class="page-hero">
+    <p class="page-hero__eyebrow reveal-up">Livrable III · Avant-projet</p>
+    <h1 class="page-hero__title reveal-up" style="animation-delay:.15s">Étude de <em>faisabilité</em></h1>
+    <div class="page-hero__meta reveal-up" style="animation-delay:.3s">
+      <span><strong>Projet :</strong> Sélection d'un CRM</span>
+      <span><strong>Commanditaire :</strong> Beau Mariage</span>
+      <span><strong>Version :</strong> 1.0</span>
+      <span><strong>Statut :</strong> En cours</span>
+    </div>
+  </header>
+
+  <!-- Séparateur alliances -->
+  <div class="divider-rings" aria-hidden="true">
+    <svg class="rings" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+      <circle class="ring" cx="50" cy="46" r="24"/>
+      <circle class="ring ring--2" cx="74" cy="46" r="24"/>
+      <path class="gem" d="M62 8l5 7-5 7-5-7z"/>
+      <path class="sparkle" d="M30 18l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z"/>
+      <path class="sparkle sparkle--b" d="M96 24l1.2 3 3 1.2-3 1.2-1.2 3-1.2-3-3-1.2 3-1.2z"/>
+    </svg>
+  </div>
+
+  <main class="doc">
+
+    <!-- Introduction -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">0</span><h2 class="block__title">Objet du document</h2></div>
+      <p>
+        L'étude de faisabilité a pour objectif de déterminer si le projet de mise en place d'un CRM
+        au sein de Beau Mariage est <strong>réalisable</strong>, dans les conditions actuelles de l'entreprise.
+        Elle ne répond pas encore à la question « quel outil choisir ? » — c'est l'objet du benchmark —
+        mais à la question fondamentale : <strong>« peut-on faire ce projet, et à quelles conditions ? »</strong>
+      </p>
+      <p>
+        L'analyse est conduite selon quatre axes : technique, organisationnel, financier et temporel.
+        Chaque axe aboutit à un verdict et, le cas échéant, à des conditions de réussite ou des recommandations.
+      </p>
+
+      <!-- Verdict global -->
+      <div class="verdict">
+        <div class="verdict__icon">✅</div>
+        <div class="verdict__text">
+          <strong>Verdict global : projet faisable, sous conditions</strong>
+          Le projet CRM de Beau Mariage est techniquement et financièrement accessible pour une TPE/PME.
+          Sa réussite dépend principalement de la conduite du changement et de la disponibilité des équipes
+          pendant la phase d'intégration.
+        </div>
+      </div>
+
+      <!-- Jauges synthèse -->
+      <div class="gauge-grid" style="margin-top:28px;">
+        <div class="gauge">
+          <div class="gauge__label">Technique</div>
+          <div class="gauge__bar"><div class="gauge__fill" style="width:75%"></div></div>
+          <div class="gauge__val">Favorable</div>
+        </div>
+        <div class="gauge">
+          <div class="gauge__label">Organisationnel</div>
+          <div class="gauge__bar"><div class="gauge__fill" style="width:60%"></div></div>
+          <div class="gauge__val">Modéré</div>
+        </div>
+        <div class="gauge">
+          <div class="gauge__label">Financier</div>
+          <div class="gauge__bar"><div class="gauge__fill" style="width:70%"></div></div>
+          <div class="gauge__val">Favorable</div>
+        </div>
+        <div class="gauge">
+          <div class="gauge__label">Temporel</div>
+          <div class="gauge__bar"><div class="gauge__fill" style="width:65%"></div></div>
+          <div class="gauge__val">Modéré</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Faisabilité technique -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">I</span><h2 class="block__title">Faisabilité technique</h2></div>
+
+      <p>Cette dimension évalue la capacité de l'infrastructure et de l'écosystème numérique de Beau Mariage
+      à accueillir et à intégrer un CRM, qu'il soit open source ou en mode SaaS.</p>
+
+      <table class="feas-table">
+        <thead>
+          <tr><th>Critère</th><th>Situation actuelle</th><th>Niveau de risque</th><th>Action requise</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Infrastructure</strong></td>
+            <td>Ventes 100 % en ligne, site internet existant</td>
+            <td><span class="ok">Faible</span></td>
+            <td>Vérifier hébergeur actuel (capacité, accès API)</td>
+          </tr>
+          <tr>
+            <td><strong>Intégration e-commerce</strong></td>
+            <td>Site internet dédié, flux clients et commandes existants</td>
+            <td><span class="mid">Moyen</span></td>
+            <td>Identifier les connecteurs disponibles (API REST, webhooks) entre le site et le CRM cible</td>
+          </tr>
+          <tr>
+            <td><strong>Données existantes</strong></td>
+            <td>Base clients, fournisseurs et commandes non centralisée</td>
+            <td><span class="mid">Moyen</span></td>
+            <td>Cartographier et nettoyer les données avant migration (dédoublonnage, format)</td>
+          </tr>
+          <tr>
+            <td><strong>Compétences techniques internes</strong></td>
+            <td>Direction Informatique présente en interne</td>
+            <td><span class="ok">Faible</span></td>
+            <td>Impliquer le Directeur Informatique dès la phase de paramétrage</td>
+          </tr>
+          <tr>
+            <td><strong>Sécurité &amp; RGPD</strong></td>
+            <td>Traitement de données clients (noms, adresses, historique achats)</td>
+            <td><span class="mid">Moyen</span></td>
+            <td>Vérifier conformité RGPD du CRM retenu (hébergement EU, chiffrement, droits d'accès)</td>
+          </tr>
+          <tr>
+            <td><strong>Mode d'hébergement</strong></td>
+            <td>À définir selon la solution retenue</td>
+            <td><span class="ok">Faible</span></td>
+            <td>SaaS : aucune infra à gérer. On-premise : prévoir serveur dédié</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="reco">
+        <strong>Recommandation :</strong> Privilegier dans un premier temps une solution <strong>SaaS</strong>
+        (hébergée chez l'éditeur) afin de limiter la charge technique interne. Une solution on-premise
+        (open source installée sur serveur) sera envisageable si le Directeur Informatique dispose de la
+        bande passante nécessaire.
+      </div>
+    </section>
+
+    <!-- 2. Faisabilité organisationnelle -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">II</span><h2 class="block__title">Faisabilité organisationnelle</h2></div>
+
+      <p>Un projet CRM est avant tout un <strong>projet humain</strong>. La réussite de l'intégration dépend
+      autant de l'adhésion des équipes que du choix de l'outil lui-même. Cette dimension analyse la
+      maturité organisationnelle de Beau Mariage pour absorber ce changement.</p>
+
+      <div class="grid2" style="margin-top:16px;">
+        <div class="subcard subcard--in">
+          <h4>Facteurs favorables</h4>
+          <ul>
+            <li>Petite structure (7–8 personnes) : communication directe, décisions rapides</li>
+            <li>Direction Générale sponsor du projet : portage politique fort</li>
+            <li>Direction Informatique dédiée en interne</li>
+            <li>Activité 100 % digitale : culture numérique existante</li>
+            <li>Besoin clairement exprimé par les équipes commerciales</li>
+          </ul>
+        </div>
+        <div class="subcard subcard--out">
+          <h4>Points de vigilance</h4>
+          <ul>
+            <li>Équipe commerciale réduite (2 commerciaux + Dir.) : disponibilité limitée pendant le projet</li>
+            <li>Pas de DSI dédié à la gestion de projet CRM</li>
+            <li>Risque de résistance au changement si les habitudes de travail sont bousculées</li>
+            <li>Activité saisonnière forte (pic printemps/été) : fenêtre projet à respecter</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="margin-top:22px;"><strong>Identification des rôles clés pour la conduite du projet :</strong></p>
+      <div class="who" style="margin-top:10px;">
+        <div class="lead"><strong>Sponsor</strong><span>Directeur Général</span></div>
+        <div><strong>Pilote projet</strong><span>Chef de projet (équipe mandatée)</span></div>
+        <div><strong>Référent métier</strong><span>Dir. Commercial</span></div>
+        <div><strong>Référent technique</strong><span>Dir. Informatique</span></div>
+        <div><strong>Valideur budget</strong><span>Dir. Financier</span></div>
+      </div>
+
+      <div class="cond" style="margin-top:22px;">
+        <strong>Condition de réussite :</strong> Mettre en place un <strong>plan de conduite du changement</strong>
+        dès le démarrage — communication interne, formation anticipée, désignation d'un référent CRM interne
+        (« super-utilisateur ») qui sera l'interlocuteur privilégié post-déploiement.
+      </div>
+    </section>
+
+    <!-- 3. Faisabilité financière -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">III</span><h2 class="block__title">Faisabilité financière</h2></div>
+
+      <p>Cette dimension croise le coût du projet avec la capacité d'investissement de Beau Mariage
+      et le retour sur investissement (ROI) attendu.</p>
+
+      <p><strong>Rappel des enveloppes budgétaires issues du macro-budget :</strong></p>
+      <div class="grid2" style="margin-top:10px;">
+        <div class="subcard subcard--in">
+          <h4>Open Source</h4>
+          <p>Investissement initial élevé, pas de licence récurrente.</p>
+          <p style="margin-top:10px;font-weight:600;color:var(--sage-dark);">39 000 – 122 000 €</p>
+        </div>
+        <div class="subcard subcard--out">
+          <h4>Solution Payante (SaaS)</h4>
+          <p>Investissement initial modéré, coût de licence annuel récurrent.</p>
+          <p style="margin-top:10px;font-weight:600;color:var(--sage-dark);">37 000 – 118 000 € (an 1)</p>
+        </div>
+      </div>
+
+      <p style="margin-top:22px;"><strong>Retour sur investissement attendu :</strong></p>
+      <div class="roi-grid">
+        <div class="roi-card">
+          <div class="roi-card__val">–30%</div>
+          <div class="roi-card__label">Temps de traitement des commandes grâce à la centralisation</div>
+        </div>
+        <div class="roi-card">
+          <div class="roi-card__val">+15%</div>
+          <div class="roi-card__label">Taux de fidélisation client grâce aux campagnes marketing ciblées</div>
+        </div>
+        <div class="roi-card">
+          <div class="roi-card__val">–20%</div>
+          <div class="roi-card__label">Erreurs de facturation et de suivi fournisseur</div>
+        </div>
+        <div class="roi-card">
+          <div class="roi-card__val">2–3 ans</div>
+          <div class="roi-card__label">Délai de retour sur investissement estimé</div>
+        </div>
+      </div>
+
+      <p style="margin-top:22px;">Ces estimations sont indicatives et devront être affinées lors du benchmark.
+      La viabilité financière dépend également des <strong>sources de financement mobilisables</strong> :</p>
+      <ul>
+        <li><strong>Fonds propres</strong> — solution privilégiée pour une TPE</li>
+        <li><strong>Prêt bancaire</strong> — possible si l'investissement dépasse la capacité d'autofinancement</li>
+        <li><strong>Aides publiques</strong> — dispositifs BPI France (ex. Prêt Numérique) et aides à la digitalisation des PME</li>
+      </ul>
+
+      <div class="reco">
+        <strong>Recommandation :</strong> Faire valider l'enveloppe budgétaire par la Direction Financière
+        avant de lancer le benchmark, pour cadrer la sélection des solutions dans une fourchette de prix cohérente
+        avec la capacité d'investissement réelle de Beau Mariage.
+      </div>
+    </section>
+
+    <!-- 4. Faisabilité temporelle -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">IV</span><h2 class="block__title">Faisabilité temporelle</h2></div>
+
+      <p>Cette dimension évalue la compatibilité du calendrier projet avec les contraintes opérationnelles
+      de Beau Mariage, en particulier la <strong>saisonnalité forte</strong> de l'activité mariage.</p>
+
+      <p><strong>Contraintes calendaires identifiées :</strong></p>
+      <ul>
+        <li><strong>Pic d'activité printemps/été (avril–août)</strong> : période à éviter pour les phases intrusives
+        (intégration, migration, recette), les équipes étant mobilisées sur l'opérationnel</li>
+        <li><strong>Fenêtre projet idéale</strong> : septembre à mars — période creuse propice au paramétrage,
+        aux tests et à la formation</li>
+        <li><strong>Durée totale estimée</strong> : 8 à 14 mois de l'avant-projet au déploiement,
+        selon la complexité de la solution retenue</li>
+      </ul>
+
+      <div class="timeline" style="margin-top:20px;">
+        <div class="timeline__item">
+          <span>Mois 1–3</span>
+          <h4>Avant-projet &amp; choix de la solution</h4>
+          <p>Note de cadrage, benchmark, étude de faisabilité, validation budgétaire, décision direction.</p>
+        </div>
+        <div class="timeline__item">
+          <span>Mois 4–6</span>
+          <h4>Paramétrage &amp; intégration</h4>
+          <p>Configuration du CRM, raccordement au site e-commerce, droits d'accès utilisateurs.</p>
+        </div>
+        <div class="timeline__item">
+          <span>Mois 7–8</span>
+          <h4>Migration des données &amp; recette</h4>
+          <p>Import des bases clients / fournisseurs / commandes, tests fonctionnels, corrections.</p>
+        </div>
+        <div class="timeline__item">
+          <span>Mois 9</span>
+          <h4>Formation &amp; accompagnement</h4>
+          <p>Formation des utilisateurs finaux, documentation, désignation du super-utilisateur interne.</p>
+        </div>
+        <div class="timeline__item">
+          <span>Mois 10 · Livraison</span>
+          <h4>Déploiement &amp; go-live</h4>
+          <p>Mise en production du CRM, bascule complète, communication interne.</p>
+        </div>
+        <div class="timeline__item">
+          <span>Mois 11–14</span>
+          <h4>Suivi post-déploiement</h4>
+          <p>Bilan à 1 mois, ajustements, montée en compétences, premier bilan ROI.</p>
+        </div>
+      </div>
+
+      <div class="cond">
+        <strong>Condition de réussite :</strong> Démarrer l'avant-projet en <strong>septembre</strong>
+        pour viser un go-live en <strong>juin de l'année suivante</strong>, avant le pic d'activité estival.
+        Toute dérive de planning reporte le déploiement à l'automne suivant.
+      </div>
+    </section>
+
+    <!-- 5. Synthèse -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">V</span><h2 class="block__title">Synthèse &amp; conclusion</h2></div>
+
+      <p>L'étude de faisabilité confirme que le projet CRM de Beau Mariage est <strong>réalisable</strong>.
+      Les quatre dimensions analysées convergent vers un même constat : le projet est techniquement accessible,
+      financièrement supportable et organisationnellement faisable, à condition de respecter quelques
+      prérequis clés.</p>
+
+      <table class="feas-table" style="margin-top:16px;">
+        <thead>
+          <tr><th>Dimension</th><th>Verdict</th><th>Condition principale</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Technique</strong></td>
+            <td><span class="ok">✅ Favorable</span></td>
+            <td>Privilégier SaaS dans un premier temps ; cartographier les données avant migration</td>
+          </tr>
+          <tr>
+            <td><strong>Organisationnel</strong></td>
+            <td><span class="mid">⚠️ Modéré</span></td>
+            <td>Plan de conduite du changement et désignation d'un super-utilisateur interne</td>
+          </tr>
+          <tr>
+            <td><strong>Financier</strong></td>
+            <td><span class="ok">✅ Favorable</span></td>
+            <td>Validation budgétaire par la Direction Financière avant le benchmark</td>
+          </tr>
+          <tr>
+            <td><strong>Temporel</strong></td>
+            <td><span class="mid">⚠️ Modéré</span></td>
+            <td>Respecter la saisonnalité — éviter les phases intrusives entre avril et août</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="reco" style="margin-top:24px;">
+        <strong>Prochaine étape :</strong> Lancer le <strong>benchmark CRM</strong> sur la base des critères
+        définis dans la note de cadrage (gestion client, fournisseur, commande, facturation, marketing,
+        décisionnel), en intégrant les contraintes de faisabilité identifiées ici (RGPD, intégration
+        e-commerce, budget validé).
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__logo">Beau Mariage</div>
+    <div class="footer__divider"></div>
+    <p>Étude de faisabilité · Version 1.0 · Avant-projet CRM</p>
+    <p><a href="index.html" style="color:var(--gold-light);text-decoration:none;letter-spacing:.1em;">← Retour à l'accueil</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
