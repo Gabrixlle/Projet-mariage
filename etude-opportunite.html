@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Étude d'opportunité — Beau Mariage</title>
+  <meta name="description" content="Étude d'opportunité du projet CRM de Beau Mariage : bénéfices, alignement stratégique et scénario du statu quo.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.className="js";</script>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Cartes bénéfices chiffrés */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 16px; margin-top: 12px; }
+    .kpi {
+      background: rgba(255,255,255,.6);
+      border: 1px solid rgba(194,160,76,.22);
+      border-radius: 6px;
+      padding: 22px 18px;
+      text-align: center;
+    }
+    .kpi__val {
+      font-family: var(--font-display);
+      font-size: 34px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .kpi__label {
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    /* Comparaison statu quo vs projet */
+    .versus {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 20px;
+      align-items: stretch;
+      margin-top: 14px;
+    }
+    @media (max-width: 720px) { .versus { grid-template-columns: 1fr; } .versus__vs { display: none; } }
+    .versus__side {
+      background: rgba(244,236,223,.5);
+      border-radius: 6px;
+      padding: 22px;
+    }
+    .versus__side--do { border-top: 4px solid var(--sage); }
+    .versus__side--dont { border-top: 4px solid var(--blush); }
+    .versus__side h4 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--sage-dark);
+      margin-bottom: 10px;
+    }
+    .versus__side ul { list-style: none; margin: 0; }
+    .versus__side li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+    .versus__side--do li::before {
+      content: '✓';
+      position: absolute; left: 0;
+      color: var(--sage-dark); font-weight: 700;
+    }
+    .versus__side--dont li::before {
+      content: '✕';
+      position: absolute; left: 0;
+      color: var(--blush); font-weight: 700;
+    }
+    .versus__vs {
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-script);
+      font-size: 40px; color: var(--gold);
+    }
+
+    /* Encadré verdict / ROI */
+    .verdict-box {
+      background: linear-gradient(135deg, rgba(138,154,123,.18), rgba(194,160,76,.14));
+      border: 1.5px solid var(--gold);
+      border-radius: 6px;
+      padding: 28px;
+      margin-top: 20px;
+    }
+    .verdict-box h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      color: var(--sage-dark);
+      margin-bottom: 12px;
+    }
+    .verdict-box strong { color: var(--sage-dark); }
+
+    /* Encadré recommandation */
+    .reco-box {
+      background: rgba(138,154,123,.15);
+      border-left: 4px solid var(--sage);
+      border-radius: 0 6px 6px 0;
+      padding: 18px 22px;
+      margin-top: 16px;
+      font-size: 14.5px;
+      color: var(--ink-soft);
+    }
+    .reco-box strong { color: var(--sage-dark); }
+
+    /* Alignement stratégique */
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .strategy-card {
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(194,160,76,.2);
+      border-radius: 6px;
+      padding: 20px;
+    }
+    .strategy-card__icon {
+      font-family: var(--font-script);
+      font-size: 30px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .strategy-card h4 {
+      font-family: var(--font-display);
+      font-size: 17px;
+      color: var(--sage-dark);
+      margin-bottom: 8px;
+    }
+    .strategy-card p {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="petals" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Beau <span>Mariage</span></a>
+    <button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="nav__links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="index.html#projet">Le projet</a></li>
+      <li><a href="note-de-cadrage.html">Note de cadrage</a></li>
+      <li><a href="benchmark.html">Benchmark</a></li>
+      <li><a href="etude-faisabilite.html">Faisabilité</a></li>
+      <li><a href="etude-opportunite.html" class="is-active">Opportunité</a></li>
+      <li><a href="budget.html">Budget</a></li>
+    </ul>
+  </nav>
+
+  <!-- En-tête -->
+  <header class="page-hero">
+    <p class="page-hero__eyebrow reveal-up">Livrable IV · Avant-projet</p>
+    <h1 class="page-hero__title reveal-up" style="animation-delay:.15s">Étude <em>d'opportunité</em></h1>
+    <div class="page-hero__meta reveal-up" style="animation-delay:.3s">
+      <span><strong>Question :</strong> Pourquoi lancer ce projet ?</span>
+      <span><strong>Commanditaire :</strong> Beau Mariage</span>
+      <span><strong>Version :</strong> 1.0</span>
+      <span><strong>Statut :</strong> En cours</span>
+    </div>
+  </header>
+
+  <!-- Séparateur alliances -->
+  <div class="divider-rings" aria-hidden="true">
+    <svg class="rings" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+      <circle class="ring" cx="50" cy="46" r="24"/>
+      <circle class="ring ring--2" cx="74" cy="46" r="24"/>
+      <path class="gem" d="M62 8l5 7-5 7-5-7z"/>
+      <path class="sparkle" d="M30 18l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z"/>
+      <path class="sparkle sparkle--b" d="M96 24l1.2 3 3 1.2-3 1.2-1.2 3-1.2-3-3-1.2 3-1.2z"/>
+    </svg>
+  </div>
+
+  <main class="doc">
+
+    <!-- Objet -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">0</span><h2 class="block__title">Objet du document</h2></div>
+      <p>
+        L'étude d'opportunité répond à une question simple mais essentielle :
+        <strong>le projet CRM en vaut-il la peine pour Beau Mariage ?</strong>
+      </p>
+      <p>
+        Alors que l'étude de faisabilité démontre que le projet <em>peut</em> être fait, l'étude d'opportunité
+        justifie pourquoi il <em>doit</em> être fait. Elle croise trois dimensions : les bénéfices attendus,
+        l'alignement stratégique avec la digitalisation de l'entreprise, et le coût de l'inaction (statu quo).
+      </p>
+    </section>
+
+    <!-- 1. Bénéfices attendus -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">I</span><h2 class="block__title">Bénéfices attendus</h2></div>
+      <p>Trois catégories de bénéfices sont identifiées pour Beau Mariage, exprimées de façon prudente et adaptée à une TPE de 7 personnes en croissance.</p>
+
+      <p style="margin-top:20px;"><strong>Bénéfices quantitatifs (estimations prudentes) :</strong></p>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi__val">–30 %</div>
+          <div class="kpi__label">Temps de traitement d'une commande grâce à la centralisation</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__val">+15 %</div>
+          <div class="kpi__label">Fidélisation client via campagnes marketing ciblées</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__val">–20 %</div>
+          <div class="kpi__label">Erreurs de facturation et de suivi fournisseur</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__val">2–3 ans</div>
+          <div class="kpi__label">Délai estimé de retour sur investissement</div>
+        </div>
+      </div>
+
+      <p style="margin-top:22px;"><strong>Bénéfices qualitatifs :</strong></p>
+      <ul>
+        <li><strong>Vision 360° du client</strong> — historique d'achats, préférences et interactions centralisés</li>
+        <li><strong>Meilleure collaboration interne</strong> — la Secrétaire, les Commerciaux et le Dir. Financier partagent la même information</li>
+        <li><strong>Fiabilité des données</strong> — plus de doubles saisies, plus d'erreurs entre le site et la gestion interne</li>
+        <li><strong>Image professionnelle renforcée</strong> — devis, factures et relances homogènes et automatisés</li>
+      </ul>
+    </section>
+
+    <!-- 2. Alignement stratégique -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">II</span><h2 class="block__title">Alignement stratégique</h2></div>
+      <p>Le projet CRM s'inscrit dans la démarche de <strong>digitalisation</strong> engagée par Beau Mariage
+      et prolonge sa maturité numérique.</p>
+
+      <div class="strategy-grid">
+        <div class="strategy-card">
+          <div class="strategy-card__icon">✦</div>
+          <h4>Digitalisation</h4>
+          <p>Poursuit la logique d'une entreprise 100 % en ligne : le CRM est la brique manquante entre le site e-commerce et la gestion interne.</p>
+        </div>
+        <div class="strategy-card">
+          <div class="strategy-card__icon">✦</div>
+          <h4>Croissance maîtrisée</h4>
+          <p>Permet d'absorber la croissance sans multiplier les recrutements administratifs. Un CRM soutient une croissance de +30 à +50 % sans embauche supplémentaire.</p>
+        </div>
+        <div class="strategy-card">
+          <div class="strategy-card__icon">✦</div>
+          <h4>Conformité</h4>
+          <p>Prépare Beau Mariage à la facturation électronique obligatoire (échéance septembre 2026) et renforce la conformité RGPD des données clients.</p>
+        </div>
+        <div class="strategy-card">
+          <div class="strategy-card__icon">✦</div>
+          <h4>Fidélisation</h4>
+          <p>Sur un marché du mariage saisonnier et concurrentiel, la relation client devient un facteur différenciant clé face aux pure players sans suivi personnalisé.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Statu quo -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">III</span><h2 class="block__title">Et si on ne fait rien ?</h2></div>
+      <p>Ne pas lancer le projet n'est pas un scénario neutre. Le statu quo génère lui aussi des coûts,
+      moins visibles mais bien réels.</p>
+
+      <div class="versus">
+        <div class="versus__side versus__side--dont">
+          <h4>Scénario « ne rien faire »</h4>
+          <ul>
+            <li>Fichiers Excel dispersés, ressaisies quotidiennes</li>
+            <li>Perte progressive d'informations clients (départs, oublis)</li>
+            <li>Aucune capacité de campagne marketing structurée</li>
+            <li>Facturation manuelle, risque d'erreurs qui augmente avec le volume</li>
+            <li>Pas de reporting fiable pour piloter l'activité</li>
+            <li>Difficulté à absorber la croissance sans recruter</li>
+            <li>Non-conformité à la facturation électronique 2026</li>
+          </ul>
+        </div>
+        <div class="versus__vs">vs</div>
+        <div class="versus__side versus__side--do">
+          <h4>Scénario « projet CRM »</h4>
+          <ul>
+            <li>Donnée client centralisée et fiable</li>
+            <li>Automatisation des relances et campagnes</li>
+            <li>Facturation générée automatiquement, conforme 2026</li>
+            <li>Tableaux de bord en temps réel pour la Direction</li>
+            <li>Adoption d'une culture data-driven durable</li>
+            <li>Capacité à croître sans dégrader la qualité de service</li>
+            <li>Positionnement moderne face à la concurrence</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reco-box">
+        <strong>Le coût de l'inaction :</strong> difficile à chiffrer précisément, mais tangible. À l'échelle
+        d'une TPE, chaque heure passée à ressaisir des données ou à corriger des erreurs de facturation
+        représente une perte de productivité directe. Sur une année, cela peut atteindre plusieurs milliers
+        d'euros équivalents temps de travail — sans compter les opportunités commerciales manquées.
+      </div>
+    </section>
+
+    <!-- 4. Analyse ROI -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">IV</span><h2 class="block__title">Analyse ROI simplifiée</h2></div>
+      <p>Le calcul de ROI dans une PME reste indicatif — il croise l'investissement CRM avec les gains attendus,
+      principalement en productivité et en fidélisation client.</p>
+
+      <div class="grid2" style="margin-top:14px;">
+        <div class="subcard subcard--out">
+          <h4>Investissement (scénario Odoo)</h4>
+          <ul>
+            <li>An 1 : environ 85 000 € (mise en œuvre)</li>
+            <li>An 2 &amp; 3 : environ 16 000 € / an</li>
+            <li>Total 3 ans : environ 117 000 €</li>
+          </ul>
+        </div>
+        <div class="subcard subcard--in">
+          <h4>Gains cumulés estimés sur 3 ans</h4>
+          <ul>
+            <li>Gain de productivité (–30 % temps traitement) : ≈ 30 000 – 50 000 €</li>
+            <li>Fidélisation (+15 % rachats) : ≈ 20 000 – 40 000 €</li>
+            <li>Économie d'embauche évitée : ≈ 30 000 – 60 000 €</li>
+            <li>Total gains estimés : ≈ 80 000 – 150 000 €</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="verdict-box">
+        <h3>✦ ROI attendu à 3 ans</h3>
+        <p>Selon l'hypothèse retenue (basse, médiane ou haute), le projet CRM atteint son point d'équilibre entre <strong>2 et 3 ans</strong>. Il devient réellement rentable à partir de l'année 3 et génère des bénéfices récurrents ensuite.</p>
+        <p style="margin-top:12px;">Ces estimations restent prudentes et devront être affinées avec la Direction Financière. Elles reflètent des ordres de grandeur observés sur des projets CRM similaires dans des TPE/PME de vente en ligne.</p>
+      </div>
+    </section>
+
+    <!-- 5. Verdict -->
+    <section class="block fade">
+      <div class="block__head"><span class="block__no">V</span><h2 class="block__title">Verdict &amp; recommandation</h2></div>
+
+      <p>Les trois angles d'analyse convergent vers la même conclusion : le projet CRM est une <strong>opportunité justifiée</strong> pour Beau Mariage.</p>
+
+      <ul>
+        <li>Les <strong>bénéfices attendus</strong> sont concrets et supérieurs à l'investissement sur 3 ans</li>
+        <li>Le projet <strong>s'aligne parfaitement</strong> avec la stratégie de digitalisation et prépare aux échéances réglementaires 2026</li>
+        <li>Le <strong>statu quo n'est plus tenable</strong> à moyen terme, tant sur le plan opérationnel que réglementaire</li>
+      </ul>
+
+      <div class="verdict-box">
+        <h3>✦ Recommandation finale</h3>
+        <p><strong>Lancer le projet CRM avec la solution Odoo</strong>, dans le calendrier défini par le macro-planning (démarrage septembre, go-live mars N+1 pour éviter le pic saisonnier).</p>
+        <p style="margin-top:12px;">La combinaison <strong>couverture fonctionnelle + coût maîtrisé + alignement stratégique</strong> fait du projet un investissement pertinent pour l'avenir de Beau Mariage. Il permettra à l'entreprise de franchir un cap de professionnalisation sans dégrader son agilité de TPE.</p>
+      </div>
+
+      <p style="margin-top:24px;"><strong>Prochaine étape :</strong> validation de l'ensemble du dossier avant-projet par la Direction Générale et la Direction Financière, puis lancement de la consultation d'intégrateurs Odoo certifiés.</p>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__logo">Beau Mariage</div>
+    <div class="footer__divider"></div>
+    <p>Étude d'opportunité · Version 1.0 · Avant-projet CRM</p>
+    <p><a href="index.html" style="color:var(--gold-light);text-decoration:none;letter-spacing:.1em;">← Retour à l'accueil</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
